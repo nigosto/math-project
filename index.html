@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>My first three.js app</title>
+    <title>Math and Letters</title>
     <style>
         body {
             padding: 3rem;
@@ -58,6 +58,7 @@
             let secondPoint = document.getElementById('secondPoint').value
             let command = `${line}=Line(${firstPoint}, ${secondPoint})`
             app.evalCommand(command)
+            app.refreshViews()
             line = String.fromCharCode(line.charCodeAt(0) + 1)
             if((firstPoint === 'I' && secondPoint === 'J') || (firstPoint === 'I' && secondPoint === 'B') || (firstPoint === 'J' && secondPoint === 'B') || (firstPoint === 'J' && secondPoint === 'I') || (firstPoint === 'B' && secondPoint === 'I') || (firstPoint === 'B' && secondPoint === 'J')) {
                 counter++
