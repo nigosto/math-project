@@ -4,70 +4,48 @@
 <head>
     <meta charset="utf-8">
     <title>Math and Letters</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <style>
+        *,
+        *:before,
+        *:after {
+            margin: 0;
+            padding: 0;
+        }
+
         body {
-            padding: 3rem;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            padding: 0 4rem;
         }
 
-        .content {
-            margin-top: 2rem;
+        p {
+            margin: 0;
         }
 
-        .controls {
+        .welcome {
+            text-align: center;
+            margin-top: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .begin {
             margin-top: 2rem;
         }
     </style>
-    <script src="https://www.geogebra.org/apps/deployggb.js"></script>
 </head>
 
 <body>
-    <script>
-        var ggbApp = new GGBApplet('5.0', { "id": "app", "filename": "ggb/first.ggb", "appName": "3d", "width": 600, "height": 500, "showToolBar": false, "showAlgebraInput": false, "showMenuBar": false, "showToolBarHelp": false, });
-
-        window.addEventListener("load", function () {
-            ggbApp.inject('ggb-element');
-        });
-
-
-
-    </script>
-    <div class="header">
-        Начертайте сечението през точки I, J и B
-    </div>
-    <div class="content">
-        <div id="ggb-element"></div>
-        <form class="controls">
-            <label for="firstPoint">От точка: </label>
-            <input id="firstPoint">
-            <label for="secondPoint">До точка:</label>
-            <input id="secondPoint">
-            <input type="submit" value="Начертай">
-        </form>
-    </div>
-    <script>
-        let counter = 0
-        let line = 'b'
-        let form = document.getElementsByClassName("controls")[0]
-        form.addEventListener("submit", function (e) {
-            e.preventDefault()
-            let firstPoint = document.getElementById('firstPoint').value;
-            let secondPoint = document.getElementById('secondPoint').value
-            let command = `${line}=Line(${firstPoint}, ${secondPoint})`
-            app.evalCommand(command)
-            app.refreshViews()
-            line = String.fromCharCode(line.charCodeAt(0) + 1)
-            if((firstPoint === 'I' && secondPoint === 'J') || (firstPoint === 'I' && secondPoint === 'B') || (firstPoint === 'J' && secondPoint === 'B') || (firstPoint === 'J' && secondPoint === 'I') || (firstPoint === 'B' && secondPoint === 'I') || (firstPoint === 'B' && secondPoint === 'J')) {
-                counter++
-                if(counter === 3) {
-                    alert('congratulation')
-                }
-            }
-        })
-    </script>
+    <h1 class="welcome">Добре дошли в скрабъла по стереометрия!</h1>
+    <p>Ще ви бъдат дадени няколко чертежа на триизмерни тела с няколко точки върху тях. За всеки чертеж има отделна задача, която изисква от вас да 
+        начертаете сечението на това тяло с дадена равнина. Можете да въртите, приближавате или отдалечавате чертежа, да строите прави и точки 
+        ( в зависимост от задачата ), но 
+        разполагате с определен брой ходове на задача. При успешно изпълнение на задачата ще получите дума. След последната задача трябва да подредите
+        спечелените думи в изречение. Пожелавам ви приятна игра и успех! :)
+    </p>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/7/70/Tetrahedron.gif">
+    <a href="first.html" class="btn btn-primary begin">Започни скрабъла!</a>
 </body>
 
 </html>

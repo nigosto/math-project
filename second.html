@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Math and Letters</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <style>
+        body {
+            height: 100vh;
+            position: relative;
+        }
+
+        *,
+        *:before,
+        *:after {
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            text-align: center;
+            padding-top: 2rem;
+        }
+
+        .main {
+            width: 80%;
+            margin: auto;
+            display: flex;
+            justify-content: space-evenly;
+        }
+
+        .objects {
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .objects h3 {
+            margin-top: 3rem;
+        }
+
+        .objects-list li {
+            margin-top: 1rem;
+        }
+
+        .content {
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .controls {
+            margin-top: 2rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .controls label {
+            margin: 0.5rem;
+        }
+
+        .ggb-element {
+            margin: 0;
+        }
+
+        .alert {
+            display: none;
+            padding: 0;
+            margin: 0;
+            border: 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        .alert::before {
+            display: block;
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .alert-text {
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(50, 50, 100, 0.5);
+            padding: 2rem;
+            color: white;
+            border-radius: 15px;
+        }
+
+        .point-control {
+            width: 3rem;
+            display: inline
+        }
+
+        .control-submit {
+            margin-left: 1rem;
+        }
+
+        .next {
+            margin: auto;
+        }
+
+        li {
+            list-style: none;
+        }
+    </style>
+    <script src="https://www.geogebra.org/apps/deployggb.js"></script>
+</head>
+
+<body>
+    <script>
+        var ggbApp = new GGBApplet('5.0', { "id": "app", "filename": "ggb/first.ggb", "appName": "3d", "width": 600, "height": 500, "showToolBar": false, "showAlgebraInput": false, "showMenuBar": false, "showToolBarHelp": false, });
+
+        window.addEventListener("load", function () {
+            ggbApp.inject('ggb-element');
+        });
+    </script>
+    <div class="alert">
+        <div class="alert-text">
+            <p>ПОЗДРАВЛЕНИЯ! ВТОРАТА ДУМА Е 24!</p>
+            <a href="/second.html" class="btn btn-primary next">Продължи напред</a>
+        </div>
+    </div>
+    <div class="header h2">
+        2. Начертайте сечението през точки I, J и B
+    </div>
+    <div class="main">
+        <div class="content">
+            <div id="ggb-element"></div>
+        </div>
+        <div class="objects">
+            <form class="controls">
+                <label for="firstPoint">Начертай права от точка: </label>
+                <input class="form-control point-control" id="firstPoint">
+                <label for="secondPoint">до точка:</label>
+                <input class="form-control point-control" id="secondPoint">
+                <input type="submit" value="Начертай" class="btn btn-primary control-submit">
+            </form>
+            <h3>Начертани обекти</h3>
+            <ul class="objects-list">
+            </ul>
+        </div>
+
+    </div>
+    <script>
+        let lines = []
+
+        async function drawLine(e) {
+            e.preventDefault()
+            moves++
+            let firstPoint = document.getElementById('firstPoint').value;
+            let secondPoint = document.getElementById('secondPoint').value
+            let command = `${line}=Line(${firstPoint}, ${secondPoint})`
+            await app.asyncEvalCommand(command)
+            app.refreshViews()
+            let ul = document.getElementsByClassName('objects-list')[0];
+            let li = document.createElement("li")
+            li.appendChild(document.createTextNode(`${line} = ${firstPoint}${secondPoint}`))
+            ul.appendChild(li)
+            lines.push(line)
+            line = String.fromCharCode(line.charCodeAt(0) + 1)
+            if ((firstPoint === 'I' && secondPoint === 'J') || (firstPoint === 'I' && secondPoint === 'B') || (firstPoint === 'J' && secondPoint === 'B') || (firstPoint === 'J' && secondPoint === 'I') || (firstPoint === 'B' && secondPoint === 'I') || (firstPoint === 'B' && secondPoint === 'J')) {
+                counter++
+            }
+            if (moves === 3) {
+                if (counter === 3) {
+                    localStorage.setItem("secondLetter", "24");
+                    let alert = document.getElementsByClassName('alert')[0]
+                    alert.style.display = 'block'
+                } else {
+                    app.reset()
+                    moves = 0
+                    counter = 0
+                    ul.innerHTML = ""
+                }
+            }
+
+        }
+
+        let moves = 0
+        let counter = 0
+        let line = 'b'
+        let form = document.getElementsByClassName("controls")[0]
+        form.addEventListener("submit", drawLine)
+    </script>
+</body>
+
+</html>
