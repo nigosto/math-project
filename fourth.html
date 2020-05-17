@@ -106,6 +106,15 @@
             display: inline
         }
 
+        .points {
+            margin-top: 2rem;
+        }
+
+        .line-control {
+            width: 4rem;
+            display: inline;
+        }
+
         .control-submit {
             margin-left: 1rem;
         }
@@ -123,7 +132,7 @@
 
 <body>
     <script>
-        var ggbApp = new GGBApplet('5.0', { "id": "app", "filename": "ggb/first.ggb", "appName": "3d", "width": 600, "height": 500, "showToolBar": false, "showAlgebraInput": false, "showMenuBar": false, "showToolBarHelp": false, });
+        var ggbApp = new GGBApplet('5.0', { "id": "app", "filename": "ggb/fourth.ggb", "appName": "3d", "width": 600, "height": 500, "showToolBar": false, "showAlgebraInput": false, "showMenuBar": false, "showToolBarHelp": false, });
 
         window.addEventListener("load", function () {
             ggbApp.inject('ggb-element');
@@ -131,12 +140,12 @@
     </script>
     <div class="alert">
         <div class="alert-text">
-            <p>ПОЗДРАВЛЕНИЯ! ВТОРАТА ДУМА Е 24!</p>
-            <a href="third.html" class="btn btn-primary next">Продължи напред</a>
+            <p>ПОЗДРАВЛЕНИЯ! ЧЕТВЪРТАТА ДУМА Е ДЕН!</p>
+            <a href="fifth.html" class="btn btn-primary next">Продължи напред</a>
         </div>
     </div>
     <div class="header h2">
-        2. Начертайте сечението през точки I, J и B. Брой ходове: 3
+        4. Начертайте сечението през точки D, E и F. Брой ходове: 5
     </div>
     <div class="main">
         <div class="content">
@@ -145,9 +154,16 @@
         <div class="objects">
             <form class="controls">
                 <label for="firstPoint">Начертай права от точка: </label>
-                <input class="form-control point-control" id="firstPoint">
+                <input class="form-control point-control" id="firstPoint" placeholder="A...">
                 <label for="secondPoint">до точка:</label>
-                <input class="form-control point-control" id="secondPoint">
+                <input class="form-control point-control" id="secondPoint" placeholder="B...">
+                <input type="submit" value="Начертай" class="btn btn-primary control-submit">
+            </form>
+            <form class="points">
+                <label for="firstLine">Начертай пресечната точка на:</label>
+                <input class="form-control line-control" id="firstLine" placeholder="b...">
+                <label for="secondLine">с: </label>
+                <input class="form-control line-control" id="secondLine" placeholder="AB...">
                 <input type="submit" value="Начертай" class="btn btn-primary control-submit">
             </form>
             <h3>Начертани обекти</h3>
@@ -173,12 +189,12 @@
             ul.appendChild(li)
             lines.push(line)
             line = String.fromCharCode(line.charCodeAt(0) + 1)
-            if ((firstPoint === 'I' && secondPoint === 'J') || (firstPoint === 'I' && secondPoint === 'B') || (firstPoint === 'J' && secondPoint === 'B') || (firstPoint === 'J' && secondPoint === 'I') || (firstPoint === 'B' && secondPoint === 'I') || (firstPoint === 'B' && secondPoint === 'J')) {
+            if ((firstPoint === 'D' && secondPoint === 'E') || (firstPoint === 'D' && secondPoint === 'F') || (firstPoint === 'G' && secondPoint === 'H') || (firstPoint === 'F' && secondPoint === 'D') || (firstPoint === 'E' && secondPoint === 'D') || (firstPoint === 'H' && secondPoint === 'G')) {
                 counter++
             }
-            if (moves === 3) {
+            if (moves === 5) {
                 if (counter === 3) {
-                    localStorage.setItem("secondLetter", "24");
+                    localStorage.setItem("fourthLetter", "ден");
                     let alert = document.getElementsByClassName('alert')[0]
                     alert.style.display = 'block'
                 } else {
@@ -191,11 +207,29 @@
 
         }
 
+        function drawIntersectionPoint(e) {
+            e.preventDefault()
+            moves++
+            let firstLine = document.getElementById("firstLine").value
+            let secondLine = document.getElementById("secondLine").value
+            let command = `${point}=Intersect(${firstLine}, edge${secondLine})`
+            app.asyncEvalCommand(command)
+            app.refreshViews()
+            let ul = document.getElementsByClassName('objects-list')[0];
+            let li = document.createElement("li")
+            li.appendChild(document.createTextNode(`${point} = ${firstLine} пресечена с ${secondLine}`))
+            ul.appendChild(li)
+            point = String.fromCharCode(point.charCodeAt(0) + 1).toUpperCase()
+        }
+
         let moves = 0
         let counter = 0
         let line = 'b'
-        let form = document.getElementsByClassName("controls")[0]
-        form.addEventListener("submit", drawLine)
+        let point = 'G'
+        let lineForm = document.getElementsByClassName("controls")[0]
+        let pointForm = document.getElementsByClassName("points")[0]
+        lineForm.addEventListener("submit", drawLine)
+        pointForm.addEventListener("submit", drawIntersectionPoint)
     </script>
 </body>
 
