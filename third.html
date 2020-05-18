@@ -131,7 +131,7 @@
     </script>
     <div class="alert">
         <div class="alert-text">
-            <p>ПОЗДРАВЛЕНИЯ! ТРЕТАТА ДУМА Е МАЙ!</p>
+            <p>ПОЗДРАВЛЕНИЯ! ТРЕТАТА ДУМА Е ЧЕСТИТ!</p>
             <a href="fourth.html" class="btn btn-primary next">Продължи напред</a>
         </div>
     </div>
@@ -145,9 +145,9 @@
         <div class="objects">
             <form class="controls">
                 <label for="firstPoint">Начертай права от точка: </label>
-                <input class="form-control point-control" id="firstPoint">
+                <input class="form-control point-control" id="firstPoint" placeholder="A...">
                 <label for="secondPoint">до точка:</label>
-                <input class="form-control point-control" id="secondPoint">
+                <input class="form-control point-control" id="secondPoint" placeholder="B...">
                 <input type="submit" value="Начертай" class="btn btn-primary control-submit">
             </form>
             <h3>Начертани обекти</h3>
@@ -178,7 +178,7 @@
             }
             if (moves === 3) {
                 if (counter === 3) {
-                    localStorage.setItem("thirdLetter", "май");
+                    localStorage.setItem("thirdLetter", "Честит");
                     let alert = document.getElementsByClassName('alert')[0]
                     alert.style.display = 'block'
                 } else {

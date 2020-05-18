@@ -9,6 +9,7 @@
         body {
             height: 100vh;
             position: relative;
+            padding: 2rem;
         }
 
         *,
@@ -20,49 +21,63 @@
 
         .header {
             text-align: center;
-            padding-top: 2rem;
+            padding-top: 1rem;
         }
 
         .main {
-            width: 80%;
-            margin: auto;
             display: flex;
-            justify-content: space-evenly;
+            align-items: center;
+            flex-direction: column;
+            margin-top: 2rem;
         }
 
-        .objects {
-            margin-top: 2rem;
+        .sub-header {
+            width: 100%;
             text-align: center;
         }
 
-        .objects h3 {
-            margin-top: 3rem;
-        }
-
-        .objects-list li {
-            margin-top: 1rem;
-        }
-
         .content {
-            margin-top: 2rem;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
-        .controls {
-            margin-top: 2rem;
+        .words {
             display: flex;
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .words li:not(:first-child) {
+            margin-left: 1rem;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
             align-items: center;
-            text-align: left;
         }
 
-        .controls label {
-            margin: 0.5rem;
+        form div {
+            margin-top: 2rem;
         }
 
-        .ggb-element {
-            margin: 0;
+        input {
+            border: none;
+            border-bottom: 1px solid black;
+            outline: none;
+            width: 7rem;
+            margin-right: 1rem;
+            text-align: center;
+        }
+
+        input[type="submit"] {
+            margin-top: 2rem;
+
+        }
+
+        span {
+            margin-right: 1rem;
         }
 
         .alert {
@@ -101,176 +116,89 @@
             color: white;
             border-radius: 15px;
         }
-
-        .point-control {
-            width: 3rem;
-            display: inline
-        }
-
-        .points {
-            margin-top: 2rem;
-            text-align: left;
-        }
-
-        .parallel {
-            margin-top: 2rem;
-            text-align: left;
-        }
-
-        .line-control {
-            width: 4rem;
-            display: inline;
-        }
-
-        .control-submit {
-            margin-left: 1rem;
-        }
-
         .next {
             margin: auto;
-        }
-
-        li {
-            list-style: none;
         }
     </style>
     <script src="https://www.geogebra.org/apps/deployggb.js"></script>
 </head>
 
 <body>
-    <script>
-        var ggbApp = new GGBApplet('5.0', { "id": "app", "filename": "ggb/ninth.ggb", "appName": "3d", "width": 600, "height": 500, "showToolBar": false, "showAlgebraInput": false, "showMenuBar": false, "showToolBarHelp": false, });
-
-        window.addEventListener("load", function () {
-            ggbApp.inject('ggb-element');
-        });
-    </script>
     <div class="alert">
         <div class="alert-text">
-            <p>ПОЗДРАВЛЕНИЯ! ДЕВЕТАТА ДУМА Е ПИСМЕНОСТ!</p>
-            <a href="sentence.html" class="btn btn-primary next">Продължи напред</a>
+            <p>ПОЗДРАВЛЕНИЯ! ТИ ПРКЛЮЧИ УСПЕШНО ТОЗИ СКРАБЪЛ!</p>
+            <button class="btn btn-primary next">Затвори</button>
         </div>
     </div>
-    <div class="header h2">
-        9. Начертайте сечението през точки F, E и G. Брой ходове: 6
-    </div>
+    <h2 class="header">ПОЗДРАВЛЕНИЯ, ТИ УСПЕШНО РЕШИ ВСИЧКИ ЗАДАЧИ!</h2>
     <div class="main">
+        <p class="sub-header">Пред теб остана последното изпитание - да наредиш спечелените думи в изречение!</p>
         <div class="content">
-            <div id="ggb-element"></div>
-        </div>
-        <div class="objects">
-            <form class="controls">
-                <label for="firstPoint">Начертай права от точка: </label>
-                <input class="form-control point-control" id="firstPoint" placeholder="A...">
-                <label for="secondPoint">до точка:</label>
-                <input class="form-control point-control" id="secondPoint" placeholder="B...">
-                <input type="submit" value="Начертай" class="btn btn-primary control-submit">
-            </form>
-            <form class="points">
-                <label for="firstLine">Начертай пресечната точка на:</label>
-                <input class="form-control line-control" id="firstLine" placeholder="b...">
-                <label for="secondLine">с: </label>
-                <input class="form-control line-control" id="secondLine" placeholder="AB...">
-                <input type="submit" value="Начертай" class="btn btn-primary control-submit">
-            </form>
-            <form class="parallel">
-                <label for="parallelLine">Начертай успоредна права на:</label>
-                <input class="form-control line-control" id="parallelLine" placeholder="b...">
-                <label for="parallelPoint">през точка: </label>
-                <input class="form-control point-control" id="parallelPoint" placeholder="A...">
-                <input type="submit" value="Начертай" class="btn btn-primary control-submit">
-            </form>
-            <h3>Начертани обекти</h3>
-            <ul class="objects-list">
+            <h5>Твоите думи са:</h5>
+            <ul class="words">
             </ul>
+            <form>
+                <div>
+                    <input id="firstWord" type="text">
+                    <input id="secondWord" type="text">
+                    <input id="thirdWord" type="text">
+                    <span>-</span>
+                    <input id="fourthWord" type="text">
+                    <span>на</span>
+                    <input id="fifthWord" type="text">
+                    <input id="sixthWord" type="text">
+                    <span>и</span>
+                    <input id="seventhWord" type="text">
+                    <span>и на</span>
+                    <input id="eighthWord" type="text">
+                    <input id="ninthWord" type="text">!
+                </div>
+                <input type="submit" class="btn btn-primary" value="Предай">
+            </form>
         </div>
-
     </div>
     <script>
-        let lines = []
-
-        async function drawLine(e) {
-            e.preventDefault()
-            moves++
-            let firstPoint = document.getElementById('firstPoint').value;
-            let secondPoint = document.getElementById('secondPoint').value
-            let command = `${line}=Line(${firstPoint}, ${secondPoint})`
-            await app.asyncEvalCommand(command)
-            app.refreshViews()
-            let ul = document.getElementsByClassName('objects-list')[0];
+        let ul = document.getElementsByClassName("words")[0]
+        let words = []
+        words.push(localStorage.getItem("firstLetter"))
+        words.push(localStorage.getItem("secondLetter"))
+        words.push(localStorage.getItem("thirdLetter"))
+        words.push(localStorage.getItem("fourthLetter"))
+        words.push(localStorage.getItem("fifthLetter"))
+        words.push(localStorage.getItem("sixthLetter"))
+        words.push(localStorage.getItem("seventhLetter"))
+        words.push(localStorage.getItem("eighthLetter"))
+        words.push(localStorage.getItem("ninthLetter"))
+        for (let i = 0; i < words.length; i++) {
             let li = document.createElement("li")
-            li.appendChild(document.createTextNode(`${line} = ${firstPoint}${secondPoint}`))
+            li.appendChild(document.createTextNode(`${words[i]}`))
             ul.appendChild(li)
-            lines.push(line)
-            linesForEnd.push({line: line, points: {firstPoint, secondPoint} })
-            line = String.fromCharCode(line.charCodeAt(0) + 1)
-            if ((firstPoint === 'I' && secondPoint === 'K') || (firstPoint === 'I' && secondPoint === 'J') || (firstPoint === 'J' && secondPoint === 'L') || (firstPoint === 'L' && secondPoint === 'J') || (firstPoint === 'J' && secondPoint === 'I') || (firstPoint === 'K' && secondPoint === 'I')) {
-                counter++
-            }
-            if (moves === 6) {
-                if (counter === 4) {
-                    localStorage.setItem("ninthLetter", "писменост");
-                    let alert = document.getElementsByClassName('alert')[0]
-                    alert.style.display = 'block'
-                } else {
-                    app.reset()
-                    moves = 0
-                    counter = 0
-                    ul.innerHTML = ""
-                }
-            }
-
         }
 
-        function drawIntersectionPoint(e) {
+        let form = document.getElementsByTagName("form")[0];
+        form.addEventListener("submit", function (e) {
             e.preventDefault()
-            moves++
-            let firstLine = document.getElementById("firstLine").value
-            let secondLine = document.getElementById("secondLine").value
-            let command = `${point}=Intersect(${firstLine}, edge${secondLine})`
-            app.asyncEvalCommand(command)
-            app.refreshViews()
-            let ul = document.getElementsByClassName('objects-list')[0];
-            let li = document.createElement("li")
-            li.appendChild(document.createTextNode(`${point} = ${firstLine} пресечена с ${secondLine}`))
-            ul.appendChild(li)
-            point = String.fromCharCode(point.charCodeAt(0) + 1).toUpperCase()
-        }
-
-        function drawParallelLine(e) {
-            e.preventDefault()
-            moves++
-            let parallelLine = document.getElementById("parallelLine").value
-            let parallelPoint = document.getElementById("parallelPoint").value
-            let command = `${line}=Line(${parallelPoint}, ${parallelLine})`
-            app.asyncEvalCommand(command)
-            app.refreshViews()
-            let ul = document.getElementsByClassName('objects-list')[0];
-            let li = document.createElement("li")
-            li.appendChild(document.createTextNode(`${line} = успоредна на ${parallelLine} през ${parallelPoint}`))
-            ul.appendChild(li)
-            line = String.fromCharCode(line.charCodeAt(0) + 1)
-            for (let i = 0; i < linesForEnd.length; i++) {
-                if(linesForEnd[i].line === parallelLine) {
-                    if((linesForEnd[i].points.firstPoint === 'J' && linesForEnd[i].points.secondPoint === 'I') || (linesForEnd[i].points.secondPoint === 'J' && linesForEnd[i].points.firstPoint === 'I')) {
-                        console.log(true)
-                        counter++;
-                    }
-                }
+            let firstWord = document.getElementById("firstWord").value
+            let secondWord = document.getElementById("secondWord").value
+            let thirdWord = document.getElementById("thirdWord").value
+            let fourthWord = document.getElementById("fourthWord").value
+            let fifthWord = document.getElementById("fifthWord").value
+            let sixthWord = document.getElementById("sixthWord").value
+            let seventhWord = document.getElementById("seventhWord").value
+            let eighthWord = document.getElementById("eighthWord").value
+            let ninthWord = document.getElementById("ninthWord").value
+            if (firstWord === 'Честит' && secondWord === '24' && thirdWord === 'май' && fourthWord === 'ден' && fifthWord === 'българската' && sixthWord === 'просвета' && seventhWord === 'култура' && eighthWord === 'славянската' && ninthWord === 'писменост') {
+                let alert = document.getElementsByClassName('alert')[0]
+                alert.style.display = 'block'
             }
-        }
+        })
 
-        let linesForEnd = []
-        let moves = 0
-        let counter = 0
-        let line = 'b'
-        let point = 'L'
-        let lineForm = document.getElementsByClassName("controls")[0]
-        let pointForm = document.getElementsByClassName("points")[0]
-        let parallelForm = document.getElementsByClassName("parallel")[0]
-        lineForm.addEventListener("submit", drawLine)
-        pointForm.addEventListener("submit", drawIntersectionPoint)
-        parallelForm.addEventListener("submit", drawParallelLine)
+        let button = document.getElementsByClassName("next")[0]
+        button.addEventListener("click", function (e) {
+            let alert = document.getElementsByClassName('alert')[0]
+            alert.style.display = 'none'
+        })
+
     </script>
 </body>
 
