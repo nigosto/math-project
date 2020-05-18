@@ -144,6 +144,12 @@
             <a href="sixth.html" class="btn btn-primary next">Продължи напред</a>
         </div>
     </div>
+    <div class="alert fail">
+        <div class="alert-text">
+            <p>ТИ НЕ МОЖА ДА НАЧЕРТАЕШ СЕЧЕНИЕТО ЗА НУЖНИТЕ ХОДОВЕ!</p>
+            <button class="btn btn-primary next">Опитай пак</button>
+        </div>
+    </div>
     <div class="header h2">
         5. Начертайте сечението през точки A, I и J ( I е среда на EH, а J е среда на FG). Брой ходове: 3
     </div>
@@ -191,10 +197,12 @@
                     let alert = document.getElementsByClassName('alert')[0]
                     alert.style.display = 'block'
                 } else {
-                    app.reset()
-                    moves = 0
-                    counter = 0
-                    ul.innerHTML = ""
+                    let alert = document.getElementsByClassName('fail')[0]
+                    alert.style.display = 'block'
+                    let btn = document.getElementsByTagName('button')[0]
+                    btn.addEventListener('click', function(e) {
+                        window.location.reload()
+                    })
                 }
             }
 

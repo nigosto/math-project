@@ -130,6 +130,12 @@
             <button class="btn btn-primary next">Затвори</button>
         </div>
     </div>
+    <div class="alert">
+        <div class="alert-text">
+            <p>ИЗРЕЧЕНИЕТО ТИ НЕ Е ВЯРНО!</p>
+            <button class="btn btn-primary next">Опитай пак</button>
+        </div>
+    </div>
     <h2 class="header">ПОЗДРАВЛЕНИЯ, ТИ УСПЕШНО РЕШИ ВСИЧКИ ЗАДАЧИ!</h2>
     <div class="main">
         <p class="sub-header">Пред теб остана последното изпитание - да наредиш спечелените думи в изречение!</p>
@@ -190,6 +196,9 @@
             if (firstWord === 'Честит' && secondWord === '24' && thirdWord === 'май' && fourthWord === 'ден' && fifthWord === 'българската' && sixthWord === 'просвета' && seventhWord === 'култура' && eighthWord === 'славянската' && ninthWord === 'писменост') {
                 let alert = document.getElementsByClassName('alert')[0]
                 alert.style.display = 'block'
+            } else {
+                let alert = document.getElementsByClassName('alert')[1]
+                alert.style.display = 'block'
             }
         })
 
@@ -197,6 +206,10 @@
         button.addEventListener("click", function (e) {
             let alert = document.getElementsByClassName('alert')[0]
             alert.style.display = 'none'
+        })
+        let closeBtn = document.getElementsByClassName("next")[1]
+        closeBtn.addEventListener('click', function(e) {
+            window.location.reload()
         })
 
     </script>
