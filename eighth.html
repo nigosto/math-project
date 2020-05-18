@@ -139,7 +139,7 @@
 
 <body>
     <script>
-        var ggbApp = new GGBApplet('5.0', { "id": "app", "filename": "ggb/sixth.ggb", "appName": "3d", "width": 600, "height": 500, "showToolBar": false, "showAlgebraInput": false, "showMenuBar": false, "showToolBarHelp": false, });
+        var ggbApp = new GGBApplet('5.0', { "id": "app", "filename": "ggb/eighth.ggb", "appName": "3d", "width": 600, "height": 500, "showToolBar": false, "showAlgebraInput": false, "showMenuBar": false, "showToolBarHelp": false, });
 
         window.addEventListener("load", function () {
             ggbApp.inject('ggb-element');
@@ -147,12 +147,12 @@
     </script>
     <div class="alert">
         <div class="alert-text">
-            <p>ПОЗДРАВЛЕНИЯ! ШЕСТАТА ДУМА Е ПРОСВЕТА!</p>
-            <a href="seventh.html" class="btn btn-primary next">Продължи напред</a>
+            <p>ПОЗДРАВЛЕНИЯ! ОСМАТА ДУМА Е СЛАВЯНСКАТА!</p>
+            <a href="ninth.html" class="btn btn-primary next">Продължи напред</a>
         </div>
     </div>
     <div class="header h2">
-        6. Начертайте сечението през точки I, J и K. Брой ходове: 5
+        8. Начертайте сечението през точки I, J и K. Брой ходове: 7
     </div>
     <div class="main">
         <div class="content">
@@ -204,12 +204,12 @@
             lines.push(line)
             linesForEnd.push({line: line, points: {firstPoint, secondPoint} })
             line = String.fromCharCode(line.charCodeAt(0) + 1)
-            if ((firstPoint === 'I' && secondPoint === 'K') || (firstPoint === 'I' && secondPoint === 'J') || (firstPoint === 'J' && secondPoint === 'L') || (firstPoint === 'L' && secondPoint === 'J') || (firstPoint === 'J' && secondPoint === 'I') || (firstPoint === 'K' && secondPoint === 'I')) {
+            if ((firstPoint === 'I' && secondPoint === 'K') || (firstPoint === 'I' && secondPoint === 'J') || (firstPoint === 'M' && secondPoint === 'L') || (firstPoint === 'L' && secondPoint === 'M') || (firstPoint === 'J' && secondPoint === 'I') || (firstPoint === 'K' && secondPoint === 'I')) {
                 counter++
             }
-            if (moves === 5) {
-                if (counter === 4) {
-                    localStorage.setItem("sixthLetter", "просвета");
+            if (moves === 7) {
+                if (counter === 5) {
+                    localStorage.setItem("eighthLetter", "славянската");
                     let alert = document.getElementsByClassName('alert')[0]
                     alert.style.display = 'block'
                 } else {
@@ -250,13 +250,8 @@
             li.appendChild(document.createTextNode(`${line} = успоредна на ${parallelLine} през ${parallelPoint}`))
             ul.appendChild(li)
             line = String.fromCharCode(line.charCodeAt(0) + 1)
-            for (let i = 0; i < linesForEnd.length; i++) {
-                if(linesForEnd[i].line === parallelLine) {
-                    if((linesForEnd[i].points.firstPoint === 'J' && linesForEnd[i].points.secondPoint === 'I') || (linesForEnd[i].points.secondPoint === 'J' && linesForEnd[i].points.firstPoint === 'I')) {
-                        console.log(true)
-                        counter++;
-                    }
-                }
+            if( (parallelLine === 'c' && parallelPoint === 'J') || (parallelLine === 'c' && parallelPoint === 'K') || (parallelLine === 'b' && parallelPoint === 'J') || (parallelLine === 'b' && parallelPoint === 'K') || (parallelLine === 'd' && parallelPoint === 'J') || (parallelLine === 'd' && parallelPoint === 'K') ) {
+                counter++;
             }
         }
 

@@ -139,7 +139,7 @@
 
 <body>
     <script>
-        var ggbApp = new GGBApplet('5.0', { "id": "app", "filename": "ggb/sixth.ggb", "appName": "3d", "width": 600, "height": 500, "showToolBar": false, "showAlgebraInput": false, "showMenuBar": false, "showToolBarHelp": false, });
+        var ggbApp = new GGBApplet('5.0', { "id": "app", "filename": "ggb/ninth.ggb", "appName": "3d", "width": 600, "height": 500, "showToolBar": false, "showAlgebraInput": false, "showMenuBar": false, "showToolBarHelp": false, });
 
         window.addEventListener("load", function () {
             ggbApp.inject('ggb-element');
@@ -147,12 +147,12 @@
     </script>
     <div class="alert">
         <div class="alert-text">
-            <p>ПОЗДРАВЛЕНИЯ! ШЕСТАТА ДУМА Е ПРОСВЕТА!</p>
-            <a href="seventh.html" class="btn btn-primary next">Продължи напред</a>
+            <p>ПОЗДРАВЛЕНИЯ! ДЕВЕТАТА ДУМА Е ПИСМЕНОСТ!</p>
+            <a href="sentence.html" class="btn btn-primary next">Продължи напред</a>
         </div>
     </div>
     <div class="header h2">
-        6. Начертайте сечението през точки I, J и K. Брой ходове: 5
+        9. Начертайте сечението през точки F, E и G. Брой ходове: 7
     </div>
     <div class="main">
         <div class="content">
@@ -171,13 +171,6 @@
                 <input class="form-control line-control" id="firstLine" placeholder="b...">
                 <label for="secondLine">с: </label>
                 <input class="form-control line-control" id="secondLine" placeholder="AB...">
-                <input type="submit" value="Начертай" class="btn btn-primary control-submit">
-            </form>
-            <form class="parallel">
-                <label for="parallelLine">Начертай успоредна права на:</label>
-                <input class="form-control line-control" id="parallelLine" placeholder="b...">
-                <label for="parallelPoint">през точка: </label>
-                <input class="form-control point-control" id="parallelPoint" placeholder="A...">
                 <input type="submit" value="Начертай" class="btn btn-primary control-submit">
             </form>
             <h3>Начертани обекти</h3>
@@ -204,12 +197,12 @@
             lines.push(line)
             linesForEnd.push({line: line, points: {firstPoint, secondPoint} })
             line = String.fromCharCode(line.charCodeAt(0) + 1)
-            if ((firstPoint === 'I' && secondPoint === 'K') || (firstPoint === 'I' && secondPoint === 'J') || (firstPoint === 'J' && secondPoint === 'L') || (firstPoint === 'L' && secondPoint === 'J') || (firstPoint === 'J' && secondPoint === 'I') || (firstPoint === 'K' && secondPoint === 'I')) {
+            if ((firstPoint === 'F' && secondPoint === 'E') || (firstPoint === 'F' && secondPoint === 'G') || (firstPoint === 'E' && secondPoint === 'F') || (firstPoint === 'G' && secondPoint === 'F') || (firstPoint === 'D' && secondPoint === 'B') || (firstPoint === 'B' && secondPoint === 'D') || (firstPoint === 'A' && secondPoint === 'C') || (firstPoint === 'C' && secondPoint === 'A') || (firstPoint === 'L' && secondPoint === 'G') || (firstPoint === 'G' && secondPoint === 'L') || (firstPoint === 'L' && secondPoint === 'E') || (firstPoint === 'E' && secondPoint === 'L')) {
                 counter++
             }
-            if (moves === 5) {
-                if (counter === 4) {
-                    localStorage.setItem("sixthLetter", "просвета");
+            if (moves === 7) {
+                if (counter === 5) {
+                    localStorage.setItem("ninthLetter", "писменост");
                     let alert = document.getElementsByClassName('alert')[0]
                     alert.style.display = 'block'
                 } else {
@@ -227,7 +220,12 @@
             moves++
             let firstLine = document.getElementById("firstLine").value
             let secondLine = document.getElementById("secondLine").value
-            let command = `${point}=Intersect(${firstLine}, edge${secondLine})`
+            let command
+            if(secondLine.length === 2) {
+                command = `${point}=Intersect(${firstLine}, edge${secondLine})`
+            } else {
+                command = `${point}=Intersect(${firstLine}, ${secondLine})`
+            }
             app.asyncEvalCommand(command)
             app.refreshViews()
             let ul = document.getElementsByClassName('objects-list')[0];
@@ -235,6 +233,9 @@
             li.appendChild(document.createTextNode(`${point} = ${firstLine} пресечена с ${secondLine}`))
             ul.appendChild(li)
             point = String.fromCharCode(point.charCodeAt(0) + 1).toUpperCase()
+            if( (firstLine === 'b' && secondLine === 'd') || (firstLine === 'b' && secondLine === 'c') || (firstLine === 'd' && secondLine === 'b') || (firstLine === 'c' && secondLine === 'b') || (firstLine === 'c' && secondLine === 'd') || (firstLine === 'd' && secondLine === 'c') ) {
+                counter++;
+            }
         }
 
         function drawParallelLine(e) {
@@ -250,14 +251,14 @@
             li.appendChild(document.createTextNode(`${line} = успоредна на ${parallelLine} през ${parallelPoint}`))
             ul.appendChild(li)
             line = String.fromCharCode(line.charCodeAt(0) + 1)
-            for (let i = 0; i < linesForEnd.length; i++) {
-                if(linesForEnd[i].line === parallelLine) {
-                    if((linesForEnd[i].points.firstPoint === 'J' && linesForEnd[i].points.secondPoint === 'I') || (linesForEnd[i].points.secondPoint === 'J' && linesForEnd[i].points.firstPoint === 'I')) {
-                        console.log(true)
-                        counter++;
-                    }
-                }
-            }
+            // for (let i = 0; i < linesForEnd.length; i++) {
+            //     if(linesForEnd[i].line === parallelLine) {
+            //         if((linesForEnd[i].points.firstPoint === 'J' && linesForEnd[i].points.secondPoint === 'I') || (linesForEnd[i].points.secondPoint === 'J' && linesForEnd[i].points.firstPoint === 'I')) {
+            //             console.log(true)
+            //             counter++;
+            //         }
+            //     }
+            // }
         }
 
         let linesForEnd = []
@@ -270,7 +271,6 @@
         let parallelForm = document.getElementsByClassName("parallel")[0]
         lineForm.addEventListener("submit", drawLine)
         pointForm.addEventListener("submit", drawIntersectionPoint)
-        parallelForm.addEventListener("submit", drawParallelLine)
     </script>
 </body>
 

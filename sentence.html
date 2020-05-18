@@ -139,7 +139,7 @@
 
 <body>
     <script>
-        var ggbApp = new GGBApplet('5.0', { "id": "app", "filename": "ggb/sixth.ggb", "appName": "3d", "width": 600, "height": 500, "showToolBar": false, "showAlgebraInput": false, "showMenuBar": false, "showToolBarHelp": false, });
+        var ggbApp = new GGBApplet('5.0', { "id": "app", "filename": "ggb/ninth.ggb", "appName": "3d", "width": 600, "height": 500, "showToolBar": false, "showAlgebraInput": false, "showMenuBar": false, "showToolBarHelp": false, });
 
         window.addEventListener("load", function () {
             ggbApp.inject('ggb-element');
@@ -147,12 +147,12 @@
     </script>
     <div class="alert">
         <div class="alert-text">
-            <p>ПОЗДРАВЛЕНИЯ! ШЕСТАТА ДУМА Е ПРОСВЕТА!</p>
-            <a href="seventh.html" class="btn btn-primary next">Продължи напред</a>
+            <p>ПОЗДРАВЛЕНИЯ! ДЕВЕТАТА ДУМА Е ПИСМЕНОСТ!</p>
+            <a href="sentence.html" class="btn btn-primary next">Продължи напред</a>
         </div>
     </div>
     <div class="header h2">
-        6. Начертайте сечението през точки I, J и K. Брой ходове: 5
+        9. Начертайте сечението през точки F, E и G. Брой ходове: 6
     </div>
     <div class="main">
         <div class="content">
@@ -207,9 +207,9 @@
             if ((firstPoint === 'I' && secondPoint === 'K') || (firstPoint === 'I' && secondPoint === 'J') || (firstPoint === 'J' && secondPoint === 'L') || (firstPoint === 'L' && secondPoint === 'J') || (firstPoint === 'J' && secondPoint === 'I') || (firstPoint === 'K' && secondPoint === 'I')) {
                 counter++
             }
-            if (moves === 5) {
+            if (moves === 6) {
                 if (counter === 4) {
-                    localStorage.setItem("sixthLetter", "просвета");
+                    localStorage.setItem("ninthLetter", "писменост");
                     let alert = document.getElementsByClassName('alert')[0]
                     alert.style.display = 'block'
                 } else {
